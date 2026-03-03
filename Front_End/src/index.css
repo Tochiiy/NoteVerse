@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes rain-fall {
+  0% {
+    transform: translateY(-110%);
+  }
+  100% {
+    transform: translateY(220%);
+  }
+}
+
+@keyframes meteor-fall {
+  0% {
+    transform: translate(-20%, -140%) rotate(25deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(140%, 220%) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sun-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes sun-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes aurora-wave {
+  0%,
+  100% {
+    transform: translateX(-10%) scaleY(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateX(10%) scaleY(1.15);
+    opacity: 0.75;
+  }
+}
+
+.rain-drop {
+  position: absolute;
+  top: -40%;
+  width: 3px;
+  height: 44px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1),
+    rgba(56, 189, 248, 0.95),
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.75);
+  animation-name: rain-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.meteor-drop {
+  position: absolute;
+  top: -50%;
+  width: 3px;
+  height: 58px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1),
+    rgba(196, 181, 253, 0.95),
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: 0 0 10px rgba(196, 181, 253, 0.85);
+  animation-name: meteor-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.sun-glow {
+  position: absolute;
+  top: 4px;
+  right: 26px;
+  width: 72px;
+  height: 72px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(250, 204, 21, 0.55),
+    rgba(250, 204, 21, 0)
+  );
+  filter: blur(4px);
+  animation: sun-pulse 2.6s ease-in-out infinite;
+}
+
+.sun-core {
+  position: absolute;
+  top: 16px;
+  right: 38px;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, #fff7ae, #facc15 45%, #f59e0b);
+  box-shadow: 0 0 18px rgba(250, 204, 21, 0.8);
+  animation: sun-pulse 2.6s ease-in-out infinite;
+}
+
+.sun-ring {
+  position: absolute;
+  top: 8px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 9999px;
+  border: 2px dashed rgba(250, 204, 21, 0.65);
+  animation: sun-spin 9s linear infinite;
+}
+
+.aurora {
+  position: absolute;
+  top: -18px;
+  left: -8%;
+  width: 116%;
+  height: 80px;
+  border-radius: 9999px;
+  filter: blur(10px);
+  animation: aurora-wave 3.8s ease-in-out infinite;
+}
+
+.aurora-1 {
+  background: linear-gradient(
+    90deg,
+    rgba(45, 212, 191, 0.1),
+    rgba(56, 189, 248, 0.6),
+    rgba(192, 132, 252, 0.15)
+  );
+}
+
+.aurora-2 {
+  top: 10px;
+  height: 72px;
+  animation-delay: 0.9s;
+  background: linear-gradient(
+    90deg,
+    rgba(129, 140, 248, 0.1),
+    rgba(59, 130, 246, 0.45),
+    rgba(34, 211, 238, 0.15)
+  );
+}
