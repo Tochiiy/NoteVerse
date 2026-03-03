@@ -39,6 +39,12 @@ git push -u origin main
      - `UPSTASH_REDIS_REST_TOKEN`
 6. Deploy.
 
+Render service command values (from `render.yaml`):
+
+- Root Directory: `Back_End`
+- Build Command: `npm install && npm install --prefix ../Front_End && npm run build --prefix ../Front_End`
+- Start Command: `npm run start`
+
 ## 3) Post-Deploy Checks
 - Health check: `GET https://<your-domain>/health`
 - Frontend app loads on the same domain and can:
@@ -48,7 +54,7 @@ git push -u origin main
   - open resource page
 
 ## 4) Production Notes
-- Backend uses `PORT` from Render automatically.
+- Backend uses `PORT` injected by Render automatically.
 - Frontend is served by backend from `Front_End/dist` in production.
 - API and frontend share one URL (`/api/*` + SPA routes on same host).
 - `VITE_API_BASE_URL` is optional; leave unset to use same-origin requests.
