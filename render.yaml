@@ -4,7 +4,7 @@ services:
     runtime: node
     rootDir: Back_End
     buildCommand: npm install && npm install --prefix ../Front_End && npm run build --prefix ../Front_End
-    startCommand: npm run start
+    startCommand: npm run start:render
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
