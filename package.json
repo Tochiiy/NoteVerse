@@ -1,0 +1,21 @@
+{
+  "name": "noteverse-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "scripts": {
+    "build": "npm run build:backend && npm run build:frontend",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:backend": "npm install --prefix Back_End",
+    "build:frontend": "npm install --prefix Front_End && npm run build --prefix Front_End",
+    "start": "npm run start --prefix Back_End",
+    "start:backend": "npm run start --prefix Back_End",
+    "dev:backend": "npm run dev --prefix Back_End",
+    "dev:frontend": "npm run dev --prefix Front_End",
+    "render:backend:build": "npm install --prefix Back_End",
+    "render:backend:start": "npm run start --prefix Back_End",
+    "render:frontend:build": "npm install --prefix Front_End && npm run build --prefix Front_End"
+  }
+}

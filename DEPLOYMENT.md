@@ -1,5 +1,19 @@
 # Deployment Guide (GitHub + Render)
 
+## 0) Root Script Mode (Monorepo Style)
+
+This repo now includes a root `package.json` so Render (and local usage) can run commands from repository root.
+
+Useful root commands:
+
+```bash
+npm run build
+npm run dev
+npm run dev:backend
+npm run dev:frontend
+npm run start
+```
+
 ## 1) GitHub Setup
 From project root:
 
@@ -18,18 +32,16 @@ git push -u origin main
 3. Connect your GitHub repository.
 4. Render will detect `render.yaml` in repo root.
 5. Set required secret env vars:
-   - Backend service:
+   - Single `noteverse` service:
      - `MONGO_URI`
      - `JWT_SECRET`
      - `UPSTASH_REDIS_REST_URL`
      - `UPSTASH_REDIS_REST_TOKEN`
-   - Frontend service:
-     - `VITE_API_BASE_URL` = backend Render URL (example: `https://noteverse-backend.onrender.com`)
 6. Deploy.
 
 ## 3) Post-Deploy Checks
-- Backend health: `GET https://<backend-domain>/health`
-- Frontend app loads and can:
+- Health check: `GET https://<your-domain>/health`
+- Frontend app loads on the same domain and can:
   - register/login
   - fetch notes
   - create/edit/delete notes
@@ -37,8 +49,9 @@ git push -u origin main
 
 ## 4) Production Notes
 - Backend uses `PORT` from Render automatically.
-- Frontend static site needs `VITE_API_BASE_URL` set to backend public URL.
-- If CORS issues occur later, set a strict CORS origin list in backend env and middleware.
+- Frontend is served by backend from `Front_End/dist` in production.
+- API and frontend share one URL (`/api/*` + SPA routes on same host).
+- `VITE_API_BASE_URL` is optional; leave unset to use same-origin requests.
 
 ## 5) Redeploy after changes
 Push new commits to `main`:

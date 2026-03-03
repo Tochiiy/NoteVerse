@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 import notesRoutes from "./routes/notesRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import resourcesRoutes from "./routes/resourcesRoutes.js";
@@ -31,6 +33,9 @@ app.use((req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontendDistPath = path.resolve(__dirname, "../../Front_End/dist");
 
 app.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok" });
@@ -40,6 +45,14 @@ app.get("/health", (_req, res) => {
 app.use("/api/notes", notesRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/resources", resourcesRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(frontendDistPath));
+
+  app.get(/^(?!\/api|\/health).*/, (_req, res) => {
+    res.sendFile(path.join(frontendDistPath, "index.html"));
+  });
+}
 
 connectDB().then(() => {
   // Start accepting requests only after DB connection succeeds.
