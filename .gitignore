@@ -19,3 +19,9 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Private root docs
+API_DOCUMENTATION.md
+DEPLOYMENT.md
+MONETIZATION_SOP.md
+PROJECT_DOCUMENTATION.md

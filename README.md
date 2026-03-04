@@ -8,8 +8,6 @@ A full-stack note management app with authentication, media-ready notes, profile
 Book_Keeping_App/
   Back_End/      # Express + MongoDB API
   Front_End/     # React + Vite client
-  API_DOCUMENTATION.md
-  PROJECT_DOCUMENTATION.md
   requirements.tx
 ```
 
@@ -54,11 +52,7 @@ npm run dev
 - `VITE_MAP_EMBED_BASE_URL`
 
 ## Developer Docs
-- Full API reference: `API_DOCUMENTATION.md`
-- Full development explanation + snippets: `PROJECT_DOCUMENTATION.md`
 - Dependency requirements list: `requirements.tx`
-- Monetization SOP (for future embed code): `MONETIZATION_SOP.md`
-- Deployment runbook (GitHub + Render): `DEPLOYMENT.md`
 - Render blueprint config: `render.yaml`
 - Backend details: `Back_End/README.md`
 - Frontend details: `Front_End/README.md`

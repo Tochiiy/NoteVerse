@@ -91,8 +91,6 @@ const note = await Note.findOneAndUpdate(
 ## Additional Docs
 
 - Root overview: `../README.md`
-- Full API docs: `../API_DOCUMENTATION.md`
-- Full dev guide: `../PROJECT_DOCUMENTATION.md`
 - Dependency list: `../requirements.tx`
 
 ## Rate Limiting
