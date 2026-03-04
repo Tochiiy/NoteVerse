@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import notesRoutes from "./routes/notesRoutes.js";
@@ -36,6 +37,9 @@ const PORT = process.env.PORT || 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const frontendDistPath = path.resolve(__dirname, "../../Front_End/dist");
+const hasFrontendBuild = fs.existsSync(
+  path.join(frontendDistPath, "index.html"),
+);
 
 app.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok" });
@@ -46,7 +50,7 @@ app.use("/api/notes", notesRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/resources", resourcesRoutes);
 
-if (process.env.NODE_ENV === "production") {
+if (hasFrontendBuild) {
   app.use(express.static(frontendDistPath));
 
   app.get(/^(?!\/api|\/health).*/, (_req, res) => {
